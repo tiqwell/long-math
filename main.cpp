@@ -3,10 +3,41 @@
 int main()
 {
 	std::string str1, str2;
-	std::cin >> str1 >> str2;
-	if ((str1[0] != '-' && str2[0] != '-') || (str1[0] == '-' && str2[0] == '-'))
+	char symbol;
+	std::cin >> str1 >> symbol >> str2;
+	if (symbol == '+' && str1[0] != '-' && str2[0] != '-')
 		std::cout << add(str1, str2);
-	else
+	if(symbol == '-' && str1[0] == '-' && str2[0] == '-')
+	{
+		std::string a, b;
+		for (int i = 1; i < len(str1); i++)
+			a += str1[i];
+		for (int i = 1; i < len(str2); i++)
+			b += str1[i];
+		std::cout << add(a, b);
+	}
+	if(symbol == '-' && str1[0] != '-' && str2[0] == '-')
+	{
+		std::string a;
+		for (int i = 1; i < len(str2); i++)
+			a += str2[i];
+		std::cout << add(str1, a);
+	}
+	if (symbol == '-' && str1[0] == '-' && str2[0] != '-')
+	{
+		std::string a;
+		for (int i = 1; i < len(str1); i++)
+			a += str1[i];
+		std::cout << add(a, str2);
+	}
+	if (symbol == '-' && str1[0] != '-' && str2[0] != '-')
+	{
+		str2 = reverce(str2);
+		str2 += '-';
+		std::cout << dec(str1, reverce(str2));
+	}
+	if (symbol == '+' && str1[0] != '-' && str2[0] == '-')
 		std::cout << dec(str1, str2);
-
+	if (symbol == '+' && str1[0] == '-' && str2[0] != '-')
+		std::cout << dec(str1, str2);
 }
